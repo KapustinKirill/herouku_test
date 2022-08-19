@@ -6,6 +6,7 @@ import sqlalchemy
 import pandas as pd
 import os
 import psycopg2
+import time
 
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
@@ -32,7 +33,7 @@ def parsing_data():
         type_link = []
         x = 1
         link = links + f"?PAGEN_1={x}"
-        print(link)
+        bot.send_message(message.from_user.id, link)
         while x<20:
             link = links + f"?PAGEN_1={x}"
             r = requests.get(link, headers=HEADERS)
