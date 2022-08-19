@@ -63,6 +63,7 @@ def message_from_user(message):
     elif message.text == "Запуск":
         bot.send_message(message.from_user.id, "Поехали.....")
         items = parsing_data()
+        bot.send_message(message.from_user.id, f"Собрали {len(items)}")
         data_post_to_base(items)
         bot.send_message(message.from_user.id, f"Приехали.....{len(items)}")
     bot.send_message(message.from_user.id,message.text)

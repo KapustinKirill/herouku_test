@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="88d805ee-3508-4cca-bb7a-a615e2db85ec" name="Changes" comment="deploy">
-      <change beforePath="$PROJECT_DIR$/mosprivoz.py" beforeDir="false" afterPath="$PROJECT_DIR$/mosprivoz.py" afterDir="false" />
-    </list>
+    <list default="true" id="88d805ee-3508-4cca-bb7a-a615e2db85ec" name="Changes" comment="deploy" />
     <list id="a255c307-03f2-44de-9500-f91b898a89ac" name="New changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,7 +137,21 @@
       <option name="project" value="LOCAL" />
       <updated>1660935269830</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="deploy">
+      <created>1660935954324</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1660935954324</updated>
+    </task>
+    <task id="LOCAL-00011" summary="deploy">
+      <created>1660936115119</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1660936115119</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
