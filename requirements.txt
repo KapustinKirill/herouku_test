@@ -5,5 +5,4 @@ sqlalchemy
 pandas
 bs4
 lxml
-time
 datetime
