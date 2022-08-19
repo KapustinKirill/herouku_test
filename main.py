@@ -4,7 +4,9 @@ import logging
 import psycopg2
 from config import *
 from flask import Flask, request
-
+BOT_TOKEN = os.getenv('API_TOKEN')
+APP_URL = "https://dhawktestapplication.herokuapp.com/" +BOT_TOKEN
+DB_URI = os.getenv('DATABASE_URL')
 bot = telebot.TeleBot(BOT_TOKEN)
 server = Flask(__name__)
 logger = telebot.logger
