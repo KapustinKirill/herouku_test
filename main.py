@@ -67,7 +67,10 @@ def message_from_user(message):
         except Exception as ex:
             bot.send_message(message.from_user.id,ex)
         bot.send_message(message.from_user.id, f"Собрали {len(items)}")
-        data_post_to_base(items)
+        try:
+            data_post_to_base(items)
+        except Exception as ex:
+            bot.send_message(message.from_user.id,ex)
         bot.send_message(message.from_user.id, f"Приехали.....{len(items)}")
     bot.send_message(message.from_user.id,message.text)
 
