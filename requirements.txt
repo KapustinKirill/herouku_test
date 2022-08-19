@@ -1,3 +1,6 @@
 pyTelegramBotAPI
 flask
 psycopg2
+sqlalchemy
+pandas
+bs4

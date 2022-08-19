@@ -2,7 +2,7 @@ import os
 import telebot
 import logging
 import psycopg2
-from config import *
+from mosprivoz import *
 from flask import Flask, request
 
 
@@ -60,6 +60,11 @@ def message_from_user(message):
     update_messages_count(user_id)
     if message.text == "Привет":
         bot.send_message(message.from_user.id, f"Привет! {message.from_user.username}")
+    elif message.text == "Запуск":
+        bot.send_message(message.from_user.id, "Поехали.....")
+        items = parsing_data()
+        data_post_to_base(items)
+        bot.send_message(message.from_user.id, f"Приехали.....{len(items)}")
     bot.send_message(message.from_user.id,message.text)
 
 
