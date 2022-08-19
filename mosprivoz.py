@@ -33,7 +33,7 @@ def parsing_data():
         type_link = []
         x = 1
         link = links + f"?PAGEN_1={x}"
-        bot.send_message(message.from_user.id, link)
+        #bot.send_message(message.from_user.id, link)
         while x<20:
             link = links + f"?PAGEN_1={x}"
             r = requests.get(link, headers=HEADERS)
