@@ -14,6 +14,12 @@ def start(message):
     username = message.from_user.username
     bot.reply_to(message, f"Hello {username}")
 
+@bot.message_handler(commands=["stats"])
+def stats(message):
+    user_id = message.from_user.id
+    bot.reply_to(message, f"You ID: {user_id}")
+
+
 @server.route(f"/{BOT_TOKEN}", methods = ["POST"])
 def redirect_message():
     json_string = request.get_data().decode("utf-8")
