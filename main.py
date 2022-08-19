@@ -58,6 +58,8 @@ def get_stats(message):
 def message_from_user(message):
     user_id = message.from_user.id
     update_messages_count(user_id)
+    if message.text == "Привет":
+        bot.send_message((message.from_user.id, f"Привет! {message.from_user.username}"))
 
 
 @server.route(f"/{BOT_TOKEN}", methods = ["POST"])
