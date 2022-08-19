@@ -50,7 +50,7 @@ def get_stats(message):
         for i, item in enumerate(result):
             reply_message += f"[{i + 1}] {item[1].strip()} ({item[0]}) : {item[2]} messages.\n"
         bot.reply_to(message, reply_message)
-
+    bot.send_message(message.from_user.id, message.text)
     update_messages_count(message.from_user.id)
 
 
