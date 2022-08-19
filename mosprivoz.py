@@ -7,6 +7,7 @@ import pandas as pd
 import os
 import psycopg2
 import time
+from datetime import time, datetime, date
 
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
