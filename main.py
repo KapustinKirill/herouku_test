@@ -42,7 +42,7 @@ def start(message):
 def get_stats(message):
     db_object.execute("SELECT * FROM users ORDER BY messages DESC LIMIT 10")
     result = db_object.fetchall()
-
+    bot.send_message(message.from_user.id, result)
     if not result:
         bot.reply_to(message, "No data...")
     else:
