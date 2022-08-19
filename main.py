@@ -62,7 +62,10 @@ def message_from_user(message):
         bot.send_message(message.from_user.id, f"Привет! {message.from_user.username}")
     elif message.text == "Запуск":
         bot.send_message(message.from_user.id, "Поехали.....")
-        items = parsing_data()
+        try:
+            items = parsing_data()
+        except Exception as ex:
+            bot.send_message(message.from_user.id,ex)
         bot.send_message(message.from_user.id, f"Собрали {len(items)}")
         data_post_to_base(items)
         bot.send_message(message.from_user.id, f"Приехали.....{len(items)}")
