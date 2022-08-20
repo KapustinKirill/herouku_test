@@ -50,9 +50,20 @@ def get_stats(message):
         for i, item in enumerate(result):
             reply_message += f"[{i + 1}] {item[1].strip()} ({item[0]}) : {item[2]} messages.\n"
         bot.reply_to(message, reply_message)
-    bot.send_message(message.from_user.id, message.text)
     update_messages_count(message.from_user.id)
 
+def search_count(category: str, message):
+    st = f"https://mosprivoz.ru/catalog/{category}/"
+    db_object.execute(rf"SELECT count(\"index\") FROM public.mos_privoz_operational_metrics where links=\"{st}\"")
+    result = db_object.fetchall()
+    if not result:
+        bot.reply_to(message, "No data...")
+    else:
+        reply_message = "- count:\n"
+        for i, item in enumerate(result):
+            reply_message += f"[{i + 1}] {item[1].strip()} ({item[0]}) : {item[2]} messages.\n"
+        bot.reply_to(message, reply_message)
+    update_messages_count(message.from_user.id)
 
 @bot.message_handler(func=lambda message: True, content_types=["text"])
 def message_from_user(message):
@@ -75,7 +86,7 @@ def message_from_user(message):
     elif message.text[:5] == "Поиск":
         bot.send_message(message.from_user.id, "Считаю.....")
         bot.send_message(message.from_user.id, f"Ищу.....{message.text[6:]}")
-
+        search_count(message.text[6:], message)
     bot.send_message(message.from_user.id,message.text)
 
 
