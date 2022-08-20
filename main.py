@@ -82,7 +82,20 @@ def search_cat(message):
             reply_message += f"[{i + 1}] {item[0].strip()}  : {item[1]} skuss\n"
         bot.reply_to(message, reply_message)
     update_messages_count(message.from_user.id)
-
+def search_poz(poz,message):
+    try:
+        db_object.execute(f"SELECT name, new_price, link FROM public.mos_privoz_operational_metrics where name like ('%{poz}%') Limit 10")
+    except Exception as ex:
+        bot.send_message(message.from_user.id, ex)
+    result = db_object.fetchall()
+    if not result:
+        bot.reply_to(message, "No data...")
+    else:
+        reply_message = "- count: \n"
+        for i, item in enumerate(result):
+            reply_message += f"[{i + 1}] {item[0].strip()}  : {item[1]} : {item[2]}\n"
+        bot.reply_to(message, reply_message)
+    update_messages_count(message.from_user.id)
 @bot.message_handler(func=lambda message: True, content_types=["text"])
 def message_from_user(message):
     user_id = message.from_user.id
@@ -109,6 +122,10 @@ def message_from_user(message):
         bot.send_message(message.from_user.id, "Считаю категории....")
         bot.send_message(message.from_user.id, f"Ищу.....{message.text[6:]}")
         search_cat(message)
+    elif message.text[:7] == "Позиция":
+        bot.send_message(message.from_user.id, "Считаю категории....")
+        bot.send_message(message.from_user.id, f"Ищу.....{message.text[8:]}")
+        search_poz(message.text[8:],message)
     #bot.send_message(message.from_user.id,message.text)
 
 
