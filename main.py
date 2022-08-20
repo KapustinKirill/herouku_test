@@ -55,7 +55,10 @@ def get_stats(message):
 def search_count(category: str, message):
     st = f"https://mosprivoz.ru/catalog/{category}/"
     bot.reply_to(message, st)
-    db_object.execute(rf"SELECT count(name) FROM public.mos_privoz_operational_metrics where links=\"{st}\"")
+    try:
+        db_object.execute(rf"SELECT count(name) FROM public.mos_privoz_operational_metrics where links=\"{st}\"")
+    except Exception as ex:
+        bot.send_message(message.from_user.id, ex)
     result = db_object.fetchall()
     if not result:
         bot.reply_to(message, "No data...")
