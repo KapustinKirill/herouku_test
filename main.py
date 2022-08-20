@@ -68,6 +68,20 @@ def search_count(category: str, message):
         #    reply_message += f"[{i + 1}] {item[1].strip()} ({item[0]}) : {item[2]} messages.\n"
         bot.reply_to(message, reply_message)
     update_messages_count(message.from_user.id)
+def search_cat(message):
+    try:
+        db_object.execute(f"SELECT links, count(name) FROM public.mos_privoz_operational_metrics GROUP  BY links")
+    except Exception as ex:
+        bot.send_message(message.from_user.id, ex)
+    result = db_object.fetchall()
+    if not result:
+        bot.reply_to(message, "No data...")
+    else:
+        reply_message = "- count: "
+        for i, item in enumerate(result):
+            reply_message += f"[{i + 1}] {item[0].strip()}  : {item[1]} skuss\n"
+        bot.reply_to(message, reply_message)
+    update_messages_count(message.from_user.id)
 
 @bot.message_handler(func=lambda message: True, content_types=["text"])
 def message_from_user(message):
@@ -91,6 +105,10 @@ def message_from_user(message):
         bot.send_message(message.from_user.id, "Считаю.....")
         bot.send_message(message.from_user.id, f"Ищу.....{message.text[6:]}")
         search_count(message.text[6:], message)
+    elif message.text[:9] == "Категории":
+        bot.send_message(message.from_user.id, "Считаю категории....")
+        bot.send_message(message.from_user.id, f"Ищу.....{message.text[6:]}")
+        search_cat(message)
     #bot.send_message(message.from_user.id,message.text)
 
 
