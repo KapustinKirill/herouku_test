@@ -72,6 +72,10 @@ def message_from_user(message):
         except Exception as ex:
             bot.send_message(message.from_user.id,ex)
         bot.send_message(message.from_user.id, f"Приехали.....{len(items)}")
+    elif message.text[:5] == "Поиск":
+        bot.send_message(message.from_user.id, "Считаю.....")
+        bot.send_message(message.from_user.id, f"Ищу.....{message.text[6:]}")
+
     bot.send_message(message.from_user.id,message.text)
 
 
