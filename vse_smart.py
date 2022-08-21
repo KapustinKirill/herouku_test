@@ -42,7 +42,8 @@ async def gather_data1():
 # Собираем все ссылки на товары сайта
 
 async def get_page_data1(session,path):
-
+    global d
+    global d1
     async with session.get(url=path, headers=HEADERS) as response:
         response_text = await response.text()
         soup = BeautifulSoup(response_text, 'lxml')
