@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="88d805ee-3508-4cca-bb7a-a615e2db85ec" name="Changes" comment="deploy">
-      <change beforePath="$PROJECT_DIR$/vse_smart.py" beforeDir="false" afterPath="$PROJECT_DIR$/vse_smart.py" afterDir="false" />
-    </list>
+    <list default="true" id="88d805ee-3508-4cca-bb7a-a615e2db85ec" name="Changes" comment="deploy" />
     <list id="a255c307-03f2-44de-9500-f91b898a89ac" name="New changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -370,7 +368,21 @@
       <option name="project" value="LOCAL" />
       <updated>1661109611847</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="deploy">
+      <created>1661109938628</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1661109938628</updated>
+    </task>
+    <task id="LOCAL-00044" summary="deploy">
+      <created>1661110217866</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1661110217866</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

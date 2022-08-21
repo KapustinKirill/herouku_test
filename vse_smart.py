@@ -112,7 +112,7 @@ def parsing_vse_smart(bot,message):
     count_item = 0
     asyncio.run(gather_data1())
     unique_link = set(d1)
-    bot.send_message(message.from_user.id, f"товары собраны',len({unique_link})")
+    bot.send_message(message.from_user.id, f"товары собраны',{len(unique_link)}")
     asyncio.run(gather_data())
     df=pd.DataFrame.from_dict(items,orient='index')# перевели в DataFrame
     df.columns=['name','price','key']
