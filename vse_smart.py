@@ -22,6 +22,8 @@ d = []
 d1 = []
 items = {}
 
+unique_link = set(d1)
+
 # Собираем все категории сайта:
 async def gather_data1():
     tasks = []
@@ -98,6 +100,8 @@ async def get_page_data(session,path):
             items[article_item] = (name_item, None, False)
 
 def parsing_vse_smart(bot,message):
+    global d1
+    global unique_link
     items = {}
     d=[]
     d1=[]
