@@ -3,6 +3,7 @@ import telebot
 import logging
 import psycopg2
 from mosprivoz import *
+from vse_smart import *
 from flask import Flask, request
 
 
@@ -52,6 +53,11 @@ def get_stats(message):
         bot.reply_to(message, reply_message)
     update_messages_count(message.from_user.id)
 
+@bot.message_handler(commands=["vse_smart_parsing"])
+def get_vse_smart_parsing(message):
+    parsing_vse_smart()
+    update_messages_count(message.from_user.id)
+
 def search_count(category: str, message):
     st = f"https://mosprivoz.ru/catalog/{category}/"
     #bot.reply_to(message, st)
@@ -96,6 +102,8 @@ def search_poz(poz,message):
             reply_message += f"[{i + 1}] {item[0].strip()}  : {item[1]} : {item[2]}\n"
         bot.reply_to(message, reply_message)
     update_messages_count(message.from_user.id)
+
+
 @bot.message_handler(func=lambda message: True, content_types=["text"])
 def message_from_user(message):
     user_id = message.from_user.id
