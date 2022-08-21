@@ -105,7 +105,7 @@ async def get_page_data(session,path):
             name_item=soup.find('h1',class_="prod-detail__big-title").text.strip()
             items[article_item] = (name_item, None, False)
 
-def parsing_vse_smart():
+def parsing_vse_smart(bot,message):
     items = {}
     count_step = 0
     d = []
@@ -113,8 +113,7 @@ def parsing_vse_smart():
     count_item = 0
     asyncio.run(gather_data1())
     unique_link=set(d1)
-
-    print('товары собраны',len(unique_link))
+    bot.send_message(message.from_user.id, "товары собраны',len(unique_link)")
     asyncio.run(gather_data())
     df=pd.DataFrame.from_dict(items,orient='index')# перевели в DataFrame
     df.columns=['name','price','key']

@@ -55,7 +55,11 @@ def get_stats(message):
 
 @bot.message_handler(commands=["vse_smart_parsing"])
 def get_vse_smart_parsing(message):
-    parsing_vse_smart()
+    bot.send_message(message.from_user.id, "Поехали, собираю VseSmart.....")
+    try:
+        parsing_vse_smart(bot, message)
+    except Exception as ex:
+        bot.send_message(message.from_user.id, ex)
     update_messages_count(message.from_user.id)
 
 def search_count(category: str, message):
