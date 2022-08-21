@@ -102,6 +102,7 @@ async def get_page_data(session,path):
 def parsing_vse_smart(bot,message):
     global d1
     global unique_link
+    global items
     items = {}
     d=[]
     d1=[]
@@ -114,13 +115,9 @@ def parsing_vse_smart(bot,message):
     unique_link = set(d1)
     bot.send_message(message.from_user.id, f"товары собраны',{len(unique_link)}")
     asyncio.run(gather_data())
+    bot.send_message(message.from_user.id, f"товары собраны',{len(items)}")
     df=pd.DataFrame.from_dict(items,orient='index')# перевели в DataFrame
     df.columns=['name','price','key']
-
-    # ip базы куда запысываем - так как он динамический приходится менять
-
-    parsing_moment = datetime.now()  # Записываем момент времени обработки
-    parsing_day = date.today()  # День обработки
     host = "ec2-54-229-217-195.eu-west-1.compute.amazonaws.com"
     database="d864flhgj9d9at"
     user = "tjwycdcqmhotok"
