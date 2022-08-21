@@ -18,7 +18,8 @@ HEADERS = {
 
 }  # для отправки заголовков, чтобы сервер не посчитал нас ботами и не забанил
 
-
+d = []
+d1 = []
 
 
 # Собираем все категории сайта:
@@ -99,11 +100,10 @@ def parsing_vse_smart(bot,message):
 
     items = {}
     count_step = 0
-    d = []
-    d1 = []
+
     count_item = 0
     asyncio.run(gather_data1())
-    unique_link=set(d1)
+    unique_link = set(d1)
     bot.send_message(message.from_user.id, "товары собраны',len(unique_link)")
     asyncio.run(gather_data())
     df=pd.DataFrame.from_dict(items,orient='index')# перевели в DataFrame
