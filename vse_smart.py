@@ -17,14 +17,7 @@ HEADERS = {
 
 }  # для отправки заголовков, чтобы сервер не посчитал нас ботами и не забанил
 
-HOST = 'https://www.vsesmart.ru/catalog/' #Ссылка основного каталога
-shema = 'https://www.vsesmart.ru'         #формирование ссылок для генератора
-                   #ip базы куда запысываем - так как он динамический приходится менять
-user='kirill'                             #юзер в БД
-password='110977'                         #пароль от БД
-schema='vse_smart_parsing_data'           #Схема в БД
-parsing_moment = datetime.now()           #Записываем момент времени обработки
-parsing_day = date.today()                #День обработки
+
 
 
 # Собираем все категории сайта:
@@ -106,6 +99,8 @@ async def get_page_data(session,path):
             items[article_item] = (name_item, None, False)
 
 def parsing_vse_smart(bot,message):
+    HOST = 'https://www.vsesmart.ru/catalog/'  # Ссылка основного каталога
+    shema = 'https://www.vsesmart.ru'  # формирование ссылок для генератора
     items = {}
     count_step = 0
     d = []
@@ -118,6 +113,10 @@ def parsing_vse_smart(bot,message):
     df=pd.DataFrame.from_dict(items,orient='index')# перевели в DataFrame
     df.columns=['name','price','key']
 
+    # ip базы куда запысываем - так как он динамический приходится менять
+
+    parsing_moment = datetime.now()  # Записываем момент времени обработки
+    parsing_day = date.today()  # День обработки
     host = "ec2-54-229-217-195.eu-west-1.compute.amazonaws.com"
     database="d864flhgj9d9at"
     user = "tjwycdcqmhotok"

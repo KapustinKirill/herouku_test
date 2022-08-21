@@ -7,5 +7,5 @@ bs4
 asyncio
 lxml
 datetime
-aiohttp==3.4.4
+aiohttp
 
