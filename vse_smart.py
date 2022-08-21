@@ -86,19 +86,22 @@ async def gather_data():
 async def get_page_data(session,path):
     global items
     async with session.get(url=path, headers=HEADERS) as response:
-        response_text = await response.text()
-        soup = BeautifulSoup(response_text, "lxml")
-        if len(items)%50 == 0: print(len(items))
         try:
-            text=soup.find('div',class_="prod-detail__cost cost cost--big").find('p',class_="cost__val").text.strip()
-            price_item=int(''.join(filter(lambda x: x in string.digits,text)))
-            article_item=path
-            name_item=soup.find('h1',class_="prod-detail__big-title").text.strip()
-            items[article_item] = (name_item, price_item, True)
-        except AttributeError:
-            article_item=path
-            name_item=soup.find('h1',class_="prod-detail__big-title").text.strip()
-            items[article_item] = (name_item, None, False)
+            response_text = await response.text()
+            soup = BeautifulSoup(response_text, "lxml")
+            if len(items)%50 == 0: print(len(items))
+            try:
+                text=soup.find('div',class_="prod-detail__cost cost cost--big").find('p',class_="cost__val").text.strip()
+                price_item=int(''.join(filter(lambda x: x in string.digits,text)))
+                article_item=path
+                name_item=soup.find('h1',class_="prod-detail__big-title").text.strip()
+                items[article_item] = (name_item, price_item, True)
+            except AttributeError:
+                article_item=path
+                name_item=soup.find('h1',class_="prod-detail__big-title").text.strip()
+                items[article_item] = (name_item, None, False)
+        except Exception as ex:
+            print(ex)
 
 def parsing_vse_smart(bot,message):
     global d1
