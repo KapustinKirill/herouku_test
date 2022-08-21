@@ -7,7 +7,8 @@ import string
 import sqlalchemy
 from datetime import datetime, date
 
-
+HOST = 'https://www.vsesmart.ru/catalog/'  # Ссылка основного каталога
+shema = 'https://www.vsesmart.ru'  # формирование ссылок для генератора
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
                   'AppleWebKit/537.36 (KHTML, like Gecko) '
@@ -94,8 +95,8 @@ async def get_page_data(session,path):
             items[article_item] = (name_item, None, False)
 
 def parsing_vse_smart(bot,message):
-    HOST = 'https://www.vsesmart.ru/catalog/'  # Ссылка основного каталога
-    shema = 'https://www.vsesmart.ru'  # формирование ссылок для генератора
+
+
     items = {}
     count_step = 0
     d = []
