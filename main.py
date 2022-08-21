@@ -59,7 +59,7 @@ def get_vsesmart(message):
     try:
         parsing_vse_smart(bot, message)
     except Exception as ex:
-        print(ex)
+        print('vsesmart: ',ex)
     update_messages_count(message.from_user.id)
 
 def search_count(category: str, message):
