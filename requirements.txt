@@ -4,8 +4,8 @@ psycopg2
 sqlalchemy
 pandas
 bs4
+asyncio
 lxml
 datetime
 aiohttp
 string
-aiohttp
