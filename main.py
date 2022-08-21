@@ -53,8 +53,8 @@ def get_stats(message):
         bot.reply_to(message, reply_message)
     update_messages_count(message.from_user.id)
 
-@bot.message_handler(commands=["vse_smart_parsing"])
-def get_vse_smart_parsing(message):
+@bot.message_handler(commands=["vsesmart"])
+def get_vsesmart(message):
     bot.send_message(message.from_user.id, "Поехали, собираю VseSmart.....")
     try:
         parsing_vse_smart(bot, message)
