@@ -76,6 +76,7 @@ async def gather_data():
             task = asyncio.create_task(get_page_data(session,link))
             tasks.append(task)
         await asyncio.gather(*tasks)
+    print('stop')
 
 #Обходим все товары на сайте
 
@@ -114,9 +115,11 @@ def parsing_vse_smart(bot,message):
     asyncio.run(gather_data1())
     unique_link = set(d1)
     bot.send_message(message.from_user.id, f"товары собраны',{len(unique_link)}")
+
     asyncio.run(gather_data())
     bot.send_message(message.from_user.id, f"товары собраны',{len(items)}")
-    df=pd.DataFrame.from_dict(items,orient='index')# перевели в DataFrame
+
+    df = pd.DataFrame.from_dict(items,orient='index')# перевели в DataFrame
     df.columns=['name','price','key']
     host = "ec2-54-229-217-195.eu-west-1.compute.amazonaws.com"
     database="d864flhgj9d9at"
