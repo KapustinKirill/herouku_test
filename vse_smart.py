@@ -40,14 +40,12 @@ async def gather_data1():
 # Собираем все ссылки на товары сайта
 
 async def get_page_data1(session,path):
-    nonlocal count_item
     nonlocal d
     nonlocal d1
     async with session.get(url=path, headers=HEADERS) as response:
         response_text = await response.text()
         soup = BeautifulSoup(response_text, 'lxml')
         page_item=int(''.join(filter(lambda x: x in string.digits,soup.find('span',class_="section__title-info").text.strip())))
-        count_item += page_item
         product1=[ x.find('h4', class_= "product__title").text for x in soup.find_all('div',class_="product__info-left")]
         link_item=[f"{shema}{x['href']}" for x in soup.find_all('a',class_="product__link")]
         d = d + product1
@@ -58,10 +56,8 @@ async def get_page_data1(session,path):
                 param={f'PAGEN_1':step_page}
                 async with session.get(url=path, headers=HEADERS, params=param) as response:
                     response_text = await response.text()
-                    #r = requests.get(item, headers=HEADERS, params=param)
                     soup = BeautifulSoup(response_text, 'lxml')
                     page_item=int(''.join(filter(lambda x: x in string.digits,soup.find('span',class_="section__title-info").text.strip())))
-                    #count_item += page_item
                     product1=[ x.find('h4', class_= "product__title").text for x in soup.find_all('div',class_="product__info-left")]
                     link_item=[f"{shema}{x['href']}" for x in soup.find_all('a',class_="product__link")]
                     d = d + product1
