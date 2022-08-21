@@ -20,7 +20,7 @@ HEADERS = {
 
 d = []
 d1 = []
-
+items = {}
 
 # Собираем все категории сайта:
 async def gather_data1():
@@ -67,6 +67,7 @@ async def get_page_data1(session,path):
 
 
 async def gather_data():
+    global unique_link
     tasks = []
     async with aiohttp.ClientSession() as session:
         for link in unique_link:
@@ -80,7 +81,7 @@ async def gather_data():
 
 
 async def get_page_data(session,path):
-
+    global items
     async with session.get(url=path, headers=HEADERS) as response:
         response_text = await response.text()
         soup = BeautifulSoup(response_text, "lxml")
@@ -97,15 +98,17 @@ async def get_page_data(session,path):
             items[article_item] = (name_item, None, False)
 
 def parsing_vse_smart(bot,message):
-
-
     items = {}
+    d=[]
+    d1=[]
+
+
     count_step = 0
 
     count_item = 0
     asyncio.run(gather_data1())
     unique_link = set(d1)
-    bot.send_message(message.from_user.id, "товары собраны',len(unique_link)")
+    bot.send_message(message.from_user.id, f"товары собраны',len({unique_link})")
     asyncio.run(gather_data())
     df=pd.DataFrame.from_dict(items,orient='index')# перевели в DataFrame
     df.columns=['name','price','key']
