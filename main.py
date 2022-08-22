@@ -140,7 +140,7 @@ def message_from_user(message):
         search_poz(message.text[8:],message)
     elif message.text == "Тест":
         bot.send_message('chat_name', '<a href="https://t.me/durov">Channel of Durov, Telegram CEO</a>',
-                            parse_mode="html", link_preview=False)
+                            parse_mode="html", disable_web_page_preview=False)
     #bot.send_message(message.from_user.id,message.text)
 
 
