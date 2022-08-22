@@ -104,7 +104,8 @@ def search_poz(poz,message):
         reply_message = "- count: \n"
         for i, item in enumerate(result):
             reply_message += f"[{i + 1}] {item[0].strip()}  : {item[1]} : {item[2]}\n"
-        bot.reply_to(message, reply_message)
+        bot.reply_to(message, reply_message,
+                   parse_mode="html", disable_web_page_preview=True)
     update_messages_count(message.from_user.id)
 
 
@@ -137,8 +138,7 @@ def message_from_user(message):
     elif message.text[:7] == "Позиция":
         bot.send_message(message.from_user.id, "Считаю категории....")
         bot.send_message(message.from_user.id, f"Ищу.....{message.text[8:]}")
-        search_poz(message.text[8:],message,
-                   parse_mode="html", disable_web_page_preview=True)
+        search_poz(message.text[8:],message)
     elif message.text == "Тест":
         bot.send_message(message.from_user.id, '<a href="https://t.me/durov">Channel of Durov, Telegram CEO</a>',
                             parse_mode="html", disable_web_page_preview=False)
