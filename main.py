@@ -138,6 +138,9 @@ def message_from_user(message):
         bot.send_message(message.from_user.id, "Считаю категории....")
         bot.send_message(message.from_user.id, f"Ищу.....{message.text[8:]}")
         search_poz(message.text[8:],message)
+    elif message.text == "Тест":
+        message.user_id.send_message('chat_name', '<a href="https://t.me/durov">Channel of Durov, Telegram CEO</a>',
+                            parse_mode="html", link_preview=False)
     #bot.send_message(message.from_user.id,message.text)
 
 
